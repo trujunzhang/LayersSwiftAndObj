@@ -11,13 +11,21 @@
 
 @implementation RainforestCardCellObj
 
-- (instancetype)init {
-   self = [super init];
-   if (self) {
+- (void)awakeFromNib {
+   [super awakeFromNib];
 
-   }
-
-   return self;
+   CALayer * placeholderLayer = [[CALayer alloc] init];
+   placeholderLayer.contents = [UIImage imageNamed:@"cardPlaceholder"];
+   placeholderLayer.contentsGravity = kCAGravityCenter;
+   placeholderLayer.contentsScale = [UIScreen mainScreen].scale;
+   placeholderLayer.backgroundColor = [UIColor colorWithHue:0
+                                                 saturation:0
+                                                 brightness:0.85
+                                                      alpha:1].CGColor;
+   [self.contentView.layer addSublayer:placeholderLayer];
 }
+
+
+
 
 @end
