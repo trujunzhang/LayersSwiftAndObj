@@ -9,6 +9,7 @@
 #import "RainforestCardCellObj.h"
 #import "FrameCalculator.h"
 #import "RainforestCardInfo.h"
+#import "CollectionNode.h"
 
 
 @implementation RainforestCardCellObj
@@ -68,7 +69,7 @@
       [oldNodeConstructionOperation cancel];
 
    UIImage * image = [UIImage imageNamed:cardInfo.imageName];
-   _featureImageSizeOptional = image.size;
+   self.featureImageSizeOptional = image.size;
 
    NSOperation * newNodeConstructionOperation = [self nodeConstructionOperationWithCardInfo:cardInfo image:image];
 
@@ -78,9 +79,37 @@
 
 
 - (NSOperation *)nodeConstructionOperationWithCardInfo:(RainforestCardInfo *)cardInfo image:(UIImage *)image {
+   NSBlockOperation * nodeConstructionOperation = [[NSBlockOperation alloc] init];
 
+   void (^cellExecutionBlock)() = ^{
+       if (nodeConstructionOperation.cancelled)
+          return;
 
+       CollectionNode * containerNode = [[CollectionNode alloc] initWithImage:image cardInfo:cardInfo];
+       ASImageNode * backgroundImageNode = containerNode.backgroundImageNode;
 
+       if (nodeConstructionOperation.cancelled)
+          return;
+
+       dispatch_async(dispatch_get_main_queue(), ^{
+           NSBlockOperation * strongNodeConstructionOperation = nodeConstructionOperation;
+           if (strongNodeConstructionOperation.cancelled)
+              return;
+
+           if (self.nodeConstructionOperation != strongNodeConstructionOperation)
+              return;
+
+           if (containerNode.preventOrCancelDisplay)
+              return;
+
+           //MARK: Node Layer and Wrap Up Section
+           [self.contentView.layer addSublayer:containerNode.layer];
+           [containerNode setNeedsDisplay];
+           self.contentLayer = containerNode.layer;
+           self.containerNode = containerNode;
+       });
+   };
+   [nodeConstructionOperation addExecutionBlock:cellExecutionBlock];
    return nil;
 }
 
