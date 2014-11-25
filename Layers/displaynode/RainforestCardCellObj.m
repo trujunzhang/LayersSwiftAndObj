@@ -42,8 +42,9 @@
    [super layoutSubviews];
 
    [CATransaction begin];
-   [CATransaction setValue:[NSValue valueWithPointer:kCFBooleanTrue] forKey:kCATransactionDisableActions];
-   _placeholderLayer.frame = self.bounds;
+   [CATransaction setValue:(id) kCFBooleanTrue
+                    forKey:kCATransactionDisableActions];
+   self.placeholderLayer.frame = self.bounds;
    [CATransaction commit];
 }
 
