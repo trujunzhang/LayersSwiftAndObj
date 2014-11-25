@@ -92,9 +92,11 @@
        if (nodeConstructionOperation.cancelled)
           return;
 
-       __weak typeof(self) nodeConstructionOperation = self;
+//       __weak typeof(self) nodeConstructionOperation = self;
+       __weak typeof(self) weakSelf = self;
        dispatch_async(dispatch_get_main_queue(), ^{
-           NSBlockOperation * strongNodeConstructionOperation = nodeConstructionOperation;
+           __strong typeof(weakSelf) strongSelf = weakSelf;
+           NSBlockOperation * strongNodeConstructionOperation = strongSelf.nodeConstructionOperation;
            if (strongNodeConstructionOperation.cancelled)
               return;
 
@@ -111,7 +113,10 @@
            self.containerNode = containerNode;
        });
    };
+
    [nodeConstructionOperation addExecutionBlock:cellExecutionBlock];
+   [nodeConstructionOperation start];
+
    return nil;
 }
 

@@ -12,6 +12,7 @@
 #import "AnimatedContentsDisplayLayer.h"
 #import "GradientNode.h"
 #import "Foundation.h"
+#import "UIImage+ImageEffects.h"
 
 
 @implementation CollectionNode
@@ -59,6 +60,33 @@
    backgroundImageNode.image = self.image;
    backgroundImageNode.contentMode = UIViewContentModeScaleAspectFill;
    backgroundImageNode.layerBacked = true;
+
+
+   asimagenode_modification_block_t modificationBlock = ^UIImage *(UIImage * image) {
+       BOOL (^didCancelBlur)() = ^BOOL {
+           __block BOOL isCancelled = YES;
+           ASImageNode * strongBackgroundImageNode = backgroundImageNode;
+
+           dispatch_block_t isCancelledClosure = ^{
+               isCancelled = [strongBackgroundImageNode preventOrCancelDisplay];;
+           };
+           if ([NSThread isMainThread]) {
+              isCancelledClosure();
+           } else {
+              dispatch_sync(dispatch_get_main_queue(), isCancelledClosure);
+           }
+           return isCancelled;
+       };
+       UIImage * blurredImage = [image applyBlurWithRadius:30 tintColor:[UIColor colorWithWhite:0.5 alpha:0.3]
+                                     saturationDeltaFactor:1.8
+                                                 maskImage:nil
+                                                 didCancel:didCancelBlur];
+       if (blurredImage)
+          return blurredImage;
+
+       return image;
+   };
+   backgroundImageNode.imageModificationBlock = modificationBlock;
 
    self.backgroundImageNode = backgroundImageNode;
 }
