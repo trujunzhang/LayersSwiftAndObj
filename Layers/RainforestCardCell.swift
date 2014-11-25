@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class RainforestCardCell: UICollectionViewCell {
   var featureImageSizeOptional: CGSize?
   var placeholderLayer: CALayer!
