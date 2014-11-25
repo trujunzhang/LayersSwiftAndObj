@@ -19,6 +19,7 @@
 		20C60F1019F9A3A9009ED7FE /* GradientNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C60F0F19F9A3A9009ED7FE /* GradientNode.swift */; };
 		20C60F1219F9C3DB009ED7FE /* AnimatedContentsDisplayLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C60F1119F9C3DB009ED7FE /* AnimatedContentsDisplayLayer.swift */; };
 		20D857E019E7744C00C74F2D /* AttributionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D857DF19E7744C00C74F2D /* AttributionTableViewController.swift */; };
+		5E04F4901A248EBC001A0663 /* RainforestCardCellObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E04F48F1A248EBC001A0663 /* RainforestCardCellObj.m */; };
 		5E21BADE1A245008003DAF6E /* GradientNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E21BADD1A245008003DAF6E /* GradientNode.m */; };
 		5E7CA7BF1A244D7900498E07 /* AnimatedContentsDisplayLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7CA7BE1A244D7900498E07 /* AnimatedContentsDisplayLayer.m */; };
 		5E8BFC171A245C370036BAC4 /* Foundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E8BFC161A245C370036BAC4 /* Foundation.m */; };
@@ -47,6 +48,8 @@
 		20D857DF19E7744C00C74F2D /* AttributionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributionTableViewController.swift; sourceTree = "<group>"; };
 		32586020D943488CAFE7AAD2 /* Pods-Layers.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Layers.xcconfig"; path = "Pods/Pods-Layers.xcconfig"; sourceTree = "<group>"; };
 		4AB6CAF9D65C0DE0D974D2C5 /* Pods-Layers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Layers.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Layers/Pods-Layers.debug.xcconfig"; sourceTree = "<group>"; };
+		5E04F48E1A248EBC001A0663 /* RainforestCardCellObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RainforestCardCellObj.h; sourceTree = "<group>"; };
+		5E04F48F1A248EBC001A0663 /* RainforestCardCellObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RainforestCardCellObj.m; sourceTree = "<group>"; };
 		5E21BADC1A245008003DAF6E /* GradientNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientNode.h; sourceTree = "<group>"; };
 		5E21BADD1A245008003DAF6E /* GradientNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientNode.m; sourceTree = "<group>"; };
 		5E7CA7BD1A244D7900498E07 /* AnimatedContentsDisplayLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimatedContentsDisplayLayer.h; sourceTree = "<group>"; };
@@ -172,6 +175,8 @@
 				5EBCA86F1A2416A700FE1818 /* RainforestCardInfo.m */,
 				5EEC71261A240BE200AE6F0D /* CollectionNode.h */,
 				5EEC71271A240BE200AE6F0D /* CollectionNode.m */,
+				5E04F48E1A248EBC001A0663 /* RainforestCardCellObj.h */,
+				5E04F48F1A248EBC001A0663 /* RainforestCardCellObj.m */,
 			);
 			path = displaynode;
 			sourceTree = "<group>";
@@ -300,6 +305,7 @@
 			files = (
 				20A29BFC19B55FA3007FF4F2 /* UIImage+ImageEffects.m in Sources */,
 				20C60F1019F9A3A9009ED7FE /* GradientNode.swift in Sources */,
+				5E04F4901A248EBC001A0663 /* RainforestCardCellObj.m in Sources */,
 				2061349119B53BE200888CAB /* RainforestViewController.swift in Sources */,
 				5EBCA8731A241A4600FE1818 /* FrameCalculator.m in Sources */,
 				5EBCA8701A2416A700FE1818 /* RainforestCardInfo.m in Sources */,
