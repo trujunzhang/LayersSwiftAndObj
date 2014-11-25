@@ -7,6 +7,8 @@
 //
 
 #import "RainforestCardCellObj.h"
+#import "FrameCalculator.h"
+#import "RainforestCardInfo.h"
 
 
 @implementation RainforestCardCellObj
@@ -26,6 +28,61 @@
 }
 
 
+- (CGSize)sizeThatFits:(CGSize)size {
+   CGSize featureImageSize = self.featureImageSizeOptional;
+   if (!CGSizeEqualToSize(CGSizeZero, featureImageSize))
+      return [FrameCalculator sizeThatFits:size withImageSize:featureImageSize];
+
+   return CGSizeZero;
+}
+
+
+- (void)layoutSubviews {
+   [super layoutSubviews];
+
+   [CATransaction begin];
+   [CATransaction setValue:[NSValue valueWithPointer:kCFBooleanTrue] forKey:kCATransactionDisableActions];
+   _placeholderLayer.frame = self.bounds;
+   [CATransaction commit];
+}
+
+
+//MARK: Cell Reuse
+- (void)prepareForReuse {
+   [super prepareForReuse];
+
+   NSOperation * operation = _nodeConstructionOperation;
+   if (operation)
+      [operation cancel];
+
+   [_containerNode recursiveSetPreventOrCancelDisplay:YES];
+   [_contentLayer removeFromSuperlayer];
+   _contentLayer = nil;
+   _containerNode = nil;
+}
+
+
+- (void)configureCellDisplayWithCardInfo:(RainforestCardInfo *)cardInfo nodeConstructionQueue:(NSOperationQueue *)nodeConstructionQueue {
+   NSOperation * oldNodeConstructionOperation = _nodeConstructionOperation;
+   if (oldNodeConstructionOperation)
+      [oldNodeConstructionOperation cancel];
+
+   UIImage * image = [UIImage imageNamed:cardInfo.imageName];
+   _featureImageSizeOptional = image.size;
+
+   NSOperation * newNodeConstructionOperation = [self nodeConstructionOperationWithCardInfo:cardInfo image:image];
+
+   _nodeConstructionOperation = newNodeConstructionOperation;
+   [nodeConstructionQueue addOperation:newNodeConstructionOperation];
+}
+
+
+- (NSOperation *)nodeConstructionOperationWithCardInfo:(RainforestCardInfo *)cardInfo image:(UIImage *)image {
+
+
+
+   return nil;
+}
 
 
 @end
