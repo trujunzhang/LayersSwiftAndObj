@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "UIKit/UIKit.h"
 #import "AsyncDisplayKit.h"
+@class RainforestCardInfo;
 
 
 @interface RainforestCardCellObj : UICollectionViewCell
@@ -18,5 +19,7 @@
 @property(nonatomic, strong) CALayer * contentLayer;
 @property(nonatomic, strong) ASDisplayNode * containerNode;
 @property(nonatomic, strong) NSOperation * nodeConstructionOperation;
+
+- (void)configureCellDisplayWithCardInfo:(RainforestCardInfo *)cardInfo nodeConstructionQueue:(NSOperationQueue *)nodeConstructionQueue;
 
 @end

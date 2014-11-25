@@ -23,7 +23,7 @@ class RainforestViewController: UICollectionViewController {
   
   override func collectionView(collectionView: UICollectionView,
       cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        var cell:RainforestCardCell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as RainforestCardCell
+        var cell:RainforestCardCellObj = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as RainforestCardCellObj
         let cardInfo :RainforestCardInfo = rainforestCardsInfo[indexPath.item] as RainforestCardInfo;
         cell.configureCellDisplayWithCardInfo(cardInfo, nodeConstructionQueue: nodeConstructionQueue);
     //cell.configureCellDisplayWithCardInfo(cardInfo, nodeConstructionQueue: nodeConstructionQueue)
