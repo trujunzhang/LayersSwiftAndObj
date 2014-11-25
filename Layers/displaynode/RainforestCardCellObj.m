@@ -91,6 +91,7 @@
        if (nodeConstructionOperation.cancelled)
           return;
 
+       __weak typeof(self) nodeConstructionOperation = self;
        dispatch_async(dispatch_get_main_queue(), ^{
            NSBlockOperation * strongNodeConstructionOperation = nodeConstructionOperation;
            if (strongNodeConstructionOperation.cancelled)
